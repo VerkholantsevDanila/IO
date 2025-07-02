@@ -17,8 +17,8 @@ bot_token = os.getenv("BOT_TOKEN") # Telegram bot API key
 db_config = {
     'host': os.getenv("MYSQL_HOST", "mysql"),
     'user': os.getenv("MYSQL_USER", "root"),
-    'password': os.getenv("MYSQL_PASSWORD", "rootpassword"),
-    'database': os.getenv("MYSQL_DATABASE", "krypton"),
+    'password': os.getenv("MYSQL_PASSWORD", "RjhzdsqCkjy"),
+    'database': os.getenv("MYSQL_DATABASE", "ioio"),
     'port': 3306
 }
 bot = telebot.TeleBot(bot_token)
@@ -55,7 +55,7 @@ def user_check(message):
         cursor.close()
 
     bot.delete_message(message.chat.id, message.message_id)
-    bot.send_message(message.chat.id,f'🔹<b>KryptOn</b>🔹', parse_mode='html')
+    bot.send_message(message.chat.id,f'🔹<b>IO</b>🔹', parse_mode='html')
     menu(message)
 
 def menu(message):
@@ -69,7 +69,7 @@ def menu(message):
 def balance(message):
     # Balance menu page
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton('🔹 Add Koins', url='https://t.me/CryptoBot'))
+    markup.add(types.InlineKeyboardButton('🔹 Add Koins', url='https://t.me/ioioconnectbot'))
     markup.add(types.InlineKeyboardButton('🔹 Payment History', callback_data='pay_history'))
     markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
     bot.send_message(message.chat.id,f'<b>Balance: </b>0 Koins\n<b>Subscriptions limit: </b>{subscriptions_max_count}\n', parse_mode='html', reply_markup=markup)

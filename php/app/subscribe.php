@@ -5,7 +5,7 @@ $host = getenv('MYSQL_HOST') ?: 'mysql';
 $user = getenv('MYSQL_USER') ?: 'user';
 $pass = getenv('MYSQL_PASSWORD') ?: 'password';
 $db   = getenv('MYSQL_DATABASE') ?: 'database';
-$url  = getenv('SUBSCRIPTION_BASE_URL') ?: 'https://raw.githubusercontent.com/bekirovtimur/KryptOn/refs/heads/main/keys';
+$url  = getenv('SUBSCRIPTION_BASE_URL') ?: 'https://raw.githubusercontent.com/VerkholantsevDanila/IO/refs/heads/main/keys';
 
 $mysqli = new mysqli($host, $user, $pass, $db);
 
@@ -41,14 +41,14 @@ $stmt->bind_result($usertoken, $region, $endDate);
 
 if ($stmt->fetch()) {
     http_response_code(200);
-    $profiletitle = "🔹KryptOn🔹".$region."🔹";
+    $profiletitle = "🔹IOConnect🔹".$region."🔹";
     $profiletitle_b64 = base64_encode($profiletitle);
     header('Content-Type: text/plain');
     echo "//profile-title: base64:".$profiletitle_b64."\n";
     echo "//profile-update-interval: 8\n";
     echo "//subscription-userinfo: upload=0; download=0; total=10737418240000000; expire=".$endDate."\n";
-    echo "//support-url: https://t.me/KryptOnAssistBot\n";
-    echo "//profile-web-page-url: https://t.me/KryptOnAssistBot\n";
+    echo "//support-url: https://t.me/ioioconnectbot\n";
+    echo "//profile-web-page-url: https://t.me/ioioconnectbot\n";
     echo "//user-token: ".$usertoken."\n\n";
 
 $userurl = $url."/".$region.".txt";
@@ -57,14 +57,14 @@ echo $content;
 
 } else {
     http_response_code(200);
-    $profiletitle = "🔹KryptOn🔹";
+    $profiletitle = "🔹IOConnect🔹";
     $profiletitle_b64 = base64_encode($profiletitle);
     header('Content-Type: text/plain');
     echo "//profile-title: base64:".$profiletitle_b64."\n";
     echo "//profile-update-interval: 24\n";
     echo "//subscription-userinfo: upload=1024; download=1024; total=1024; expire=".time()."\n";
     echo "//support-url: https://t.me/KryptOnAssistBot\n";
-    echo "//profile-web-page-url: https://t.me/KryptOnAssistBot\n";
+    echo "//profile-web-page-url: https://t.me/ioioconnectbot\n";
     echo "//user-token: ".$token."\n\n";
     echo "ss://none:0000@127.0.0.1:1#%F0%9F%94%B4%20EXPIRED%20%F0%9F%94%B4\n";
 }

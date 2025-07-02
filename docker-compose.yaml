@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: "mysql:lts"
+    image: "mysql:8.0.28"
     restart: always
     environment:
       TZ: ${TZ}
