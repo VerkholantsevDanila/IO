@@ -63,25 +63,16 @@ def menu(message):
     markup = types.InlineKeyboardMarkup()
     markup.add(types.InlineKeyboardButton('🔹 Balance', callback_data='balance'))
     markup.add(types.InlineKeyboardButton('🔹 Subscriptions', callback_data='subscriptions'))
-    markup.add(types.InlineKeyboardButton('🔹 Get Help', callback_data='gethelp'))
+    markup.add(types.InlineKeyboardButton('🔹 Get Help', url='https://telegra.ph/KryptOn-03-26-3'))
     bot.send_message(message.chat.id,f'<b>Main Menu</b>', parse_mode='html', reply_markup=markup)
-
-def gethelp(message):
-    # Page with Instruction
-    markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton('🔹 Instruction EN', url='https://telegra.ph/IOIO-07-04-2'))
-    markup.add(types.InlineKeyboardButton('🔹 Instruction RU', url='https://telegra.ph/IOIO-07-04-3'))
-    markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
-    bot.send_message(message.chat.id,f'<b>Get Help</b>', parse_mode='html', reply_markup=markup)
-
 
 def balance(message):
     # Balance menu page
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton('🔹 Add Funds', url='https://t.me/ioioconnectbot'))
+    markup.add(types.InlineKeyboardButton('🔹 Add Koins', url='https://t.me/ioioconnectbot'))
     markup.add(types.InlineKeyboardButton('🔹 Payment History', callback_data='pay_history'))
     markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
-    bot.send_message(message.chat.id,f'<b>Balance: </b>0 RUB\n<b>Subscriptions limit: </b>{subscriptions_max_count}\n', parse_mode='html', reply_markup=markup)
+    bot.send_message(message.chat.id,f'<b>Balance: </b>0 Koins\n<b>Subscriptions limit: </b>{subscriptions_max_count}\n', parse_mode='html', reply_markup=markup)
 
 def pay_history(message):
     # Payments history menu page
@@ -168,7 +159,7 @@ def new_subscription_info(message, subscription_id):
     markup.add(types.InlineKeyboardButton('➕ Purchase Subscription', callback_data=f"purchase_subscription_{subscription_id}_{period_seconds}"))
     markup.add(types.InlineKeyboardButton('🔹 Back', callback_data='add_new_subscription'))
     markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
-    bot.send_message(message.chat.id, f"<b>Subscription: </b>{flag} {name}\n<b>Active until: </b>{active_until}\n<b>Cost: </b>{cost} RUB\n<i>Please note that you must have no more than {subscriptions_max_count} active subscriptions!</i>\n<i>Once the specified limit is reached, you will not be able to connect additional subscriptions.</i>\n", parse_mode='html', reply_markup=markup)
+    bot.send_message(message.chat.id, f"<b>Subscription: </b>{flag} {name}\n<b>Active until: </b>{active_until}\n<b>Cost: </b>{cost} Koins\n<i>Please note that you must have no more than {subscriptions_max_count} active subscriptions!</i>\n<i>Once the specified limit is reached, you will not be able to connect additional subscriptions.</i>\n", parse_mode='html', reply_markup=markup)
 
 def unsubscribe(message, subscription_id):
     # Unsubscribe menu page
@@ -183,7 +174,7 @@ def unsubscribe(message, subscription_id):
     markup.add(types.InlineKeyboardButton('🔻 Yes Remove Subscription', callback_data=f"remove_subscription_{subscription_id}"))
     markup.add(types.InlineKeyboardButton('🔹 Back', callback_data=f"subscription_{subscription_id}"))
     markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
-    bot.send_message(message.chat.id, f"<b>Are you sure you want to delete subscription?</b>\n<b>Subscription ID: </b>{subscription_id}\n<b>Name: </b>{name}\n<b>Region: </b>{flag} {region}\n<b>Cost: </b>{cost} RUB\n<b>Active Until: </b>{active_until}\n<b>Token: </b>{token}\n<b>Please note, this action cannot be undone!</b>", parse_mode='html', reply_markup=markup)
+    bot.send_message(message.chat.id, f"<b>Are you sure you want to delete subscription?</b>\n<b>Subscription ID: </b>{subscription_id}\n<b>Name: </b>{name}\n<b>Region: </b>{flag} {region}\n<b>Cost: </b>{cost} Koins\n<b>Active Until: </b>{active_until}\n<b>Token: </b>{token}\n<b>Please note, this action cannot be undone!</b>", parse_mode='html', reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda callback: True)
 def callback_message(callback):
@@ -193,9 +184,6 @@ def callback_message(callback):
     elif callback.data == 'menu':
         bot.delete_message(callback.message.chat.id, callback.message.message_id)
         menu(callback.message)
-    elif callback.data == 'gethelp':
-        bot.delete_message(callback.message.chat.id, callback.message.message_id)
-        gethelp(callback.message)
     elif callback.data == 'pay_history':
         bot.delete_message(callback.message.chat.id, callback.message.message_id)
         pay_history(callback.message)

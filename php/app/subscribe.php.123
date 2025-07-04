@@ -1,0 +1,122 @@
+<?php
+$host = getenv('MYSQL_HOST') ?: 'mysql';
+$user = getenv('MYSQL_USER') ?: 'user';
+$pass = getenv('MYSQL_PASSWORD') ?: 'password';
+$db   = getenv('MYSQL_DATABASE') ?: 'database';
+$url  = getenv('SUBSCRIPTION_BASE_URL') ?: 'https://raw.githubusercontent.com/VerkholantsevDanila/IO/refs/heads/main/keys';
+
+// Подключение к БД
+$mysqli = new mysqli($host, $user, $pass, $db);
+if ($mysqli->connect_error) {
+    http_response_code(500);
+    die("Database connection failed: " . $mysqli->connect_error);
+}
+
+// Получение токена
+$token = $_GET['token'] ?? null;
+if (!$token || !preg_match('/^[a-zA-Z0-9]{24}$/', $token)) {
+    http_response_code(400);
+    die("Error: Invalid or missing token.");
+}
+
+// Поиск токена
+$query = "SELECT tok.token, tar.region, tok.end_date FROM tokens tok JOIN tariffs tar ON tok.tariff_id = tar.id WHERE tok.token = ?";
+$stmt = $mysqli->prepare($query);
+if (!$stmt) {
+    http_response_code(500);
+    die("Query error: " . $mysqli->error);
+}
+
+$stmt->bind_param("s", $token);
+$stmt->execute();
+$stmt->bind_result($usertoken, $region, $endDate);
+
+if ($stmt->fetch()) {
+    // Валидный токен — отдаём HTML с защитой копирования
+    $stmt->close();
+    $mysqli->close();
+
+    $profiletitle = "🔹IOConnect🔹" . $region . "🔹";
+    $profiletitle_b64 = base64_encode($profiletitle);
+
+    // ✅ Разрешённый блок (копируемый)
+    $allowed = "";
+    $allowed .= "//profile-title: base64:" . $profiletitle_b64 . "\n";
+    $allowed .= "//profile-update-interval: 8\n";
+    $allowed .= "//subscription-userinfo: upload=0; download=0; total=10737418240000000; expire=" . $endDate . "\n";
+    $allowed .= "//support-url: https://t.me/ioioconnectbot\n";
+    $allowed .= "//profile-web-page-url: https://t.me/ioioconnectbot\n";
+    $allowed .= "//user-token: " . $usertoken . "\n\n";
+
+    // 🔒 Запрещённый блок (ключи)
+    $userurl = $url . "/" . $region . ".txt";
+    $forbidden = @file_get_contents($userurl);
+    if (!$forbidden) $forbidden = "// Error: Content not found.\n";
+
+    // HTML-ответ
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Subscription</title>
+      <style>
+        body {
+          background-color: #000;
+          color: #00ff00;
+          font-family: monospace;
+          padding: 20px;
+        }
+        pre {
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+        #no-copy {
+          user-select: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+        }
+      </style>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const protectedArea = document.getElementById('no-copy');
+          protectedArea.addEventListener('copy', function (e) {
+            e.preventDefault();
+            alert("Копирование запрещено.");
+          });
+          protectedArea.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+          });
+          protectedArea.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) {
+              e.preventDefault();
+              alert("Копирование запрещено.");
+            }
+          });
+        });
+      </script>
+    </head>
+    <body>
+      <pre id="allow-copy"><?php echo htmlspecialchars($allowed); ?></pre>
+      <pre id="no-copy"><?php echo htmlspecialchars($forbidden); ?></pre>
+    </body>
+    </html>
+    <?php
+    exit;
+}
+
+// ❌ Если токен не найден — отдаём обычный text/plain без защиты
+$stmt->close();
+$mysqli->close();
+
+$profiletitle = "🔹IOConnect🔹";
+$profiletitle_b64 = base64_encode($profiletitle);
+header('Content-Type: text/plain');
+echo "//profile-title: base64:" . $profiletitle_b64 . "\n";
+echo "//profile-update-interval: 24\n";
+echo "//subscription-userinfo: upload=1024; download=1024; total=1024; expire=" . time() . "\n";
+echo "//support-url: https://t.me/ioioconnectbot\n";
+echo "//profile-web-page-url: https://t.me/ioioconnectbot\n";
+echo "//user-token: " . $token . "\n\n";
+echo "ss://none:0000@127.0.0.1:1#🔴 EXPIRED 🔴\n";
