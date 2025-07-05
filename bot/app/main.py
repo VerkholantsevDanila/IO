@@ -74,14 +74,96 @@ def gethelp(message):
     markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
     bot.send_message(message.chat.id,f'<b>Get Help</b>', parse_mode='html', reply_markup=markup)
 
-
 def balance(message):
     # Balance menu page
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton('🔹 Add Funds', url='https://t.me/ioioconnectbot'))
+
+    # Подключение к БД (каждый раз новое!)
+    db = mysql.connector.connect(**db_config)
+    cursor = db.cursor()
+
+    cursor.execute("SELECT tg_user_id, balance FROM users WHERE chat_id = %s", (message.chat.id,))
+    result = cursor.fetchone()
+    cursor.close()
+    db.close()  # Обязательно закрывай
+
+    if result:
+        tg_user_id, balance = result
+        add_funds_url = f"https://yoomoney.ru/quickpay/shop-widget?writer=seller&targets=Paste%20your%20description%20here&targets-hint=&default-sum=150&label={tg_user_id}&button-text=12&payment-type-choice=on&hint=&successURL=&quickpay=shop&account=4100119221041643"
+    else:
+        tg_user_id = None
+        balance = 0
+        add_funds_url = "https://yoomoney.ru"
+
+    markup.add(types.InlineKeyboardButton('🔹 Add Funds', url=add_funds_url))
     markup.add(types.InlineKeyboardButton('🔹 Payment History', callback_data='pay_history'))
     markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
-    bot.send_message(message.chat.id,f'<b>Balance: </b>0 RUB\n<b>Subscriptions limit: </b>{subscriptions_max_count}\n', parse_mode='html', reply_markup=markup)
+
+    bot.send_message(
+        message.chat.id,
+        f"<b>Balance: </b>{balance} RUB\n<b>Subscriptions limit: </b>{subscriptions_max_count}",
+        parse_mode='html',
+        reply_markup=markup
+    )
+
+#def balance(message):
+    # Balance menu page
+#    markup = types.InlineKeyboardMarkup()
+
+    # Получаем tg_user_id и баланс пользователя из базы данных
+#    cursor = db.cursor()
+#    cursor.execute("SELECT tg_user_id, balance FROM users WHERE chat_id = %s", (message.chat.id,))
+#    result = cursor.fetchone()
+#    cursor.close()
+#    if result:
+#        tg_user_id, balance = result
+#        add_funds_url = f"https://yoomoney.ru/quickpay/shop-widget?writer=seller&targets=Paste%20your%20description%20here&targets-hint=&default-sum=150&label={tg_user_id}&button-text=12&payment-type-choice=on&hint=&successURL=&quickpay=shop&account=4100119221041643"
+#    else:
+        # Если пользователь не найден — даём заглушку
+#        tg_user_id = None
+#        balance = 0
+#        add_funds_url = "https://yoomoney.ru"
+
+    # Кнопки управления
+ #   markup.add(types.InlineKeyboardButton('🔹 Add Funds', url=add_funds_url))
+#    markup.add(types.InlineKeyboardButton('🔹 Payment History', callback_data='pay_history'))
+#    markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
+
+    # Отправляем сообщение
+#    bot.send_message(
+#        message.chat.id,
+#        f"<b>Balance: </b>{balance} RUB\n<b>Subscriptions limit: </b>{subscriptions_max_count}",
+#       parse_mode='html',
+#        reply_markup=markup
+#    )
+
+#def balance(message):
+    # Balance menu page
+#    markup = types.InlineKeyboardMarkup()
+#    add_funds_url = f"https://yoomoney.ru/to/4100119221041643?label={user_id}"
+#    markup.add(types.InlineKeyboardButton('🔹 Add Funds', url=add_funds_url))
+#    markup.add(types.InlineKeyboardButton('🔹 Payment History', callback_data='pay_history'))
+#    markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
+
+#    cursor = db.cursor()
+#    cursor.execute("SELECT balance FROM users WHERE chat_id = %s", (message.chat.id,))
+#    balance = cursor.fetchone()[0]
+#    cursor.close()
+
+#    bot.send_message(message.chat.id,
+#        f"<b>Balance: </b>{balance} RUB\n<b>Subscriptions limit: </b>{subscriptions_max_count}",
+#        parse_mode='html',
+#        reply_markup=markup
+#    )
+
+
+#def balance(message):
+    # Balance menu page
+#    markup = types.InlineKeyboardMarkup()
+#    markup.add(types.InlineKeyboardButton('🔹 Add Funds', url='https://t.me/ioioconnectbot'))
+#    markup.add(types.InlineKeyboardButton('🔹 Payment History', callback_data='pay_history'))
+#    markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
+#    bot.send_message(message.chat.id,f'<b>Balance: </b>0 RUB\n<b>Subscriptions limit: </b>{subscriptions_max_count}\n', parse_mode='html', reply_markup=markup)
 
 def pay_history(message):
     # Payments history menu page
@@ -120,7 +202,7 @@ def subscription_info(message, subscription_id):
     markup.add(types.InlineKeyboardButton('🔻 Remove Subscription', callback_data=f"unsubscribe_{subscription_id}"))
     markup.add(types.InlineKeyboardButton('🔹 Back', callback_data='subscriptions'))
     markup.add(types.InlineKeyboardButton('🔹 Main Menu', callback_data='menu'))
-    bot.send_message(message.chat.id, f"<b>Subscription ID: </b>{subscription_id}\n<b>Name: </b>{name}\n<b>Region: </b>{flag} {region}\n<b>Cost: </b>{cost} Koins\n<b>Active Until: </b>{active_until}\n<b>Token: </b>{token}\n", parse_mode='html', reply_markup=markup)
+    bot.send_message(message.chat.id, f"<b>Subscription ID: </b>{subscription_id}\n<b>Name: </b>{name}\n<b>Region: </b>{flag} {region}\n<b>Cost: </b>{cost} RUB\n<b>Active Until: </b>{active_until}\n<b>Token: </b>{token}\n", parse_mode='html', reply_markup=markup)
 
 def subscriptionlink_copy(message, region, token, subscription_id):
     # Copy Code menu page
@@ -299,20 +381,70 @@ def get_new_subscription_info(subscription_id):
     return result
 
 def purchase_subscription(message, subscription_id, period):
-    # Add subscription to user
     user_id = get_user_id(message)
     tariff_id = subscription_id
+
+    # Получаем цену подписки
+    cursor = db.cursor()
+    cursor.execute("SELECT cost FROM tariffs WHERE id = %s", (tariff_id,))
+    result = cursor.fetchone()
+    if not result:
+        cursor.close()
+        bot.send_message(message.chat.id, "❌ Subscription not found.")
+        return
+    cost = int(result[0])
+
+    # Получаем текущий баланс пользователя
+    cursor.execute("SELECT balance FROM users WHERE id = %s", (user_id,))
+    result = cursor.fetchone()
+    if not result:
+        cursor.close()
+        bot.send_message(message.chat.id, "❌ User not found.")
+        return
+    balance = int(result[0])
+
+    # Проверка баланса
+    if balance < cost:
+        cursor.close()
+        bot.send_message(message.chat.id, f"❌ Not enough funds. Your balance: {balance} RUB, required: {cost} RUB")
+        time.sleep(1)  # Немного подождать, чтобы сообщение успело отобразиться
+        menu(message)  # Возврат в главное меню
+        return
+
+    # Вычитаем средства
+    new_balance = balance - cost
+    cursor.execute("UPDATE users SET balance = %s WHERE id = %s", (new_balance, user_id))
+
+    # Создаём подписку
     token = generate_token()
     start_date = int(time.time())
     period_seconds = int(period)
     end_date = start_date + period_seconds
-    sql = 'INSERT INTO tokens(user_id, tariff_id, token, start_date, end_date) VALUES(%s, %s, %s, %s, %s)'
-    val = (user_id, tariff_id, token, start_date, end_date)
-    cursor = db.cursor()
-    cursor.execute(sql, val)
+    cursor.execute(
+        "INSERT INTO tokens(user_id, tariff_id, token, start_date, end_date) VALUES(%s, %s, %s, %s, %s)",
+        (user_id, tariff_id, token, start_date, end_date)
+    )
+
     db.commit()
     cursor.close()
+    bot.send_message(message.chat.id, f"✅ Subscription purchased successfully! {cost} RUB deducted from your balance.")
     subscriptions(message)
+
+#def purchase_subscription(message, subscription_id, period):
+    # Add subscription to user
+#    user_id = get_user_id(message)
+#    tariff_id = subscription_id
+#    token = generate_token()
+#    start_date = int(time.time())
+#    period_seconds = int(period)
+#    end_date = start_date + period_seconds
+#    sql = 'INSERT INTO tokens(user_id, tariff_id, token, start_date, end_date) VALUES(%s, %s, %s, %s, %s)'
+#    val = (user_id, tariff_id, token, start_date, end_date)
+#    cursor = db.cursor()
+#    cursor.execute(sql, val)
+#    db.commit()
+#    cursor.close()
+#    subscriptions(message)
 
 def remove_subscription(message, subscription_id):
     # Remove user subscription
