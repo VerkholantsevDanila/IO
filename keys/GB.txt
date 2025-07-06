@@ -358,3 +358,9 @@ vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@194.36.55.29:8880?encryption=none&s
 vless://34c01e61-f4f3-4afb-a83b-406caf8caa33@109.176.239.254:8880?encryption=none&security=none&sni=Telegram-channel-WangCai2&type=ws&host=yg.bantony199.top&path=%2FTelegram%F0%9F%87%A8%F0%9F%87%B3#177@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@91.193.58.44:8880?encryption=none&security=none&sni=us.laoyoutiao.link&type=ws&host=us.laoyoutiao.link&path=%2FTelegramU0001F1E8U0001F1F3#649@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@91.193.58.149:8880?encryption=none&security=none&type=ws&host=us.laoyoutiao.link&path=%2F#189@t.me/freekesha21
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjNDA2NDFjMWY4OWU3YWNi@46.226.163.225:57456#GB%20%F0%9F%87%AC%F0%9F%87%A7%20%E2%94%87%20SHADOWSOCKS-TCP-NTLS%20-%20Aeza%20International%20Ltd%20%E2%94%87%2046.226.163.225
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjNDA2NDFjMWY4OWU3YWNi@46.226.163.225:57456#%5B%5Dt.me%2FConfigsHub
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjNDA2NDFjMWY4OWU3YWNi@46.226.163.225:57456#%F0%9F%87%AC%F0%9F%87%A7%20GB%2019
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjNDA2NDFjMWY4OWU3YWNi@46.226.163.225:57456#%F0%9F%87%AC%F0%9F%87%A7%5Bopenproxylist.com%5D%20ss-GB
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjNDA2NDFjMWY4OWU3YWNi@46.226.163.225:57456#%F0%9F%94%92%20SS-TCP-NA%20%F0%9F%87%AC%F0%9F%87%A7%20GB-46.226.163.225%3A57456
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjNDA2NDFjMWY4OWU3YWNi@46.226.163.225:57456#%5BBy%20EbraSha%5D%20ss-GB

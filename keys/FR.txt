@@ -20,3 +20,7 @@ vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@185.193.29.213:8880?encryption=none
 vless://0132166f-e702-48ed-a9e7-b07af768faf8@185.16.110.251:8880?encryption=none&security=none&type=ws&host=cf.d3z.net&path=%2FTelegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2%20%2F%3Fed%3D2560fp%3Dchrome#906@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@185.16.110.29:8880?encryption=none&security=none&sni=hk.laoyoutiao.link&type=ws&host=hk.laoyoutiao.link&path=%2FTelegramU0001F1E8U0001F1F3#319@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@185.16.110.213:8880?encryption=none&security=none&sni=jp.laoyoutiao.link&type=ws&host=jp.laoyoutiao.link&path=%2F#31@t.me/freekesha21
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpYZG9INlFQUXNrSGxpMWFkSklLZUt2@62.210.88.22:443#%40MARAMBASHI%20%E2%AD%90%EF%B8%8F%E2%AD%90%EF%B8%8F
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTphNThmYTYyYjQ5NDRkZGJm@81.19.137.222:57456#FR%20%F0%9F%87%AB%F0%9F%87%B7%20%E2%94%87%20SHADOWSOCKS-TCP-NTLS%20-%20Aeza%20International%20Ltd%20%E2%94%87%2081.19.137.222
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTphNThmYTYyYjQ5NDRkZGJm@81.19.137.222:57456#%F0%9F%94%92%20SS-TCP-NA%20%F0%9F%87%AB%F0%9F%87%B7%20FR-81.19.137.222%3A57456
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTphNThmYTYyYjQ5NDRkZGJm@81.19.137.222:57456#%F0%9F%87%AB%F0%9F%87%B7%20FR%202

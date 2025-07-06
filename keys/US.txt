@@ -904,3 +904,9 @@ vless://34c01e61-f4f3-4afb-a83b-406caf8caa33@160.153.0.254:8880?encryption=none&
 vless://1f431db3-1918-4e7b-a855-c93485e11694@104.16.104.151:80?encryption=none&security=none&type=ws&host=pari.parinazz.dpdns.org&path=%2F#6@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@92.53.189.29:8880?encryption=none&security=none&sni=hk.laoyoutiao.link&type=ws&host=hk.laoyoutiao.link&path=%2FTelegram%40V2ray_Alpha%2F%3Fed%3D2048#274@t.me/freekesha21
 vless://583ceab3-4022-4553-9158-9bedc625ad4e@66.235.200.177:8880?encryption=none&security=none&sni=Telegram-channel-WangCai2&type=ws&host=ip.langmanshanxi.top&path=%2F#32@t.me/freekesha21
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjdklJODVUclc2bjBPR3lmcEhWUzF1@45.87.175.190:8080#%F0%9F%94%A5Join%2BTelegram%3A%40Farah_VPN%F0%9F%9F%A3
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjdklJODVUclc2bjBPR3lmcEhWUzF1@45.87.175.183:8080#%F0%9F%94%A5Join%2BTelegram%3A%40Farah_VPN%F0%9F%9F%A3
+vless://51fda508-20aa-419e-b4c3-3a6202411412@172.67.73.163:8080?encryption=none&security=none&type=ws&host=18.6na7PY43IT.zuLaiR.Org.&path=%2F#11@t.me/freekesha21
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@2.ilgm.saint.ydns.eu:8080#%5B%5Dt.me%2FConfigsHub
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.87.175.65:8080#%F0%9F%87%B1%F0%9F%87%B9LT-45.87.175.65-0278
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@beesyar.org:8080#%F0%9F%AA%8525%40oneclickvpnkeys
