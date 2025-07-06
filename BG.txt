@@ -1,2 +1,0 @@
-vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@89.117.112.29:8880?encryption=none&security=none&sni=hk.laoyoutiao.link&type=ws&host=hk.laoyoutiao.link&path=%2F#139@t.me/freekesha21
-vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@147.78.140.29:8880?encryption=none&security=none&sni=hk.laoyoutiao.link&type=ws&host=hk.laoyoutiao.link&path=%2F#208@t.me/freekesha21

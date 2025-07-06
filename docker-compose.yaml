@@ -26,6 +26,7 @@ services:
     volumes:
       - ./php/app:/var/www/html/
     environment:
+      TZ: ${TZ}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASS}
@@ -38,6 +39,7 @@ services:
       context: ./bot
     restart: always
     environment:
+      TZ: ${TZ}
       SUBSCRIPTION_SERVER_URL: ${SUBSCRIPTION_SERVER_URL}
       SUBSCRIPTIONS_MAX_COUNT: ${SUBSCRIPTIONS_MAX_COUNT}
       BOT_TOKEN: ${BOT_TOKEN}
@@ -53,6 +55,7 @@ services:
       context: ./webhook
     restart: always
     environment:
+      TZ: ${TZ}
       MYSQL_HOST: mysql
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASS}

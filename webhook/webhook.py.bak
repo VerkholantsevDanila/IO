@@ -5,13 +5,15 @@ import logging
 import hashlib
 import telebot
 from dotenv import load_dotenv
+from datetime import datetime
+import pytz
 
 load_dotenv()
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 
-# Конфиг базы
+# Конфигурация базы данных
 db_config = {
     'host': os.getenv("MYSQL_HOST", "mysql"),
     'user': os.getenv("MYSQL_USER", "root"),
@@ -20,10 +22,12 @@ db_config = {
     'port': 3306
 }
 
-# Секрет и бот
+# Секрет и токен бота
 YOOMONEY_SECRET = os.getenv("YOOMONEY_SECRET")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 bot = telebot.TeleBot(BOT_TOKEN)
+LOCAL_TZ = pytz.timezone(os.getenv("TZ", "Europe/Moscow"))
+
 
 @app.route('/yoomoney-webhook', methods=['POST'])
 def yoomoney_webhook():
@@ -31,10 +35,11 @@ def yoomoney_webhook():
     logging.info(f"[Webhook INCOMING] {data}")
 
     try:
-        # Обязательные поля для проверки подлинности
+        # Основные параметры уведомления
         notification_type = data.get('notification_type', '')
         operation_id = data.get('operation_id', '')
-        amount = data.get('amount', '')
+        amount = data.get('amount', '')  # сумма, поступившая на счёт продавца (уже после комиссии)
+        withdraw_amount = data.get('withdraw_amount', '')  # сумма, которую отправил пользователь
         currency = data.get('currency', '')
         datetime_ = data.get('datetime', '')
         sender = data.get('sender', '')
@@ -42,7 +47,16 @@ def yoomoney_webhook():
         label = data.get('label', '')
         sha1_hash = data.get('sha1_hash', '')
 
-        # Строка для хеша
+
+        
+        # Преобразуем цифровой код валюты в строку
+        currency = {
+            '643': 'RUB',
+            '840': 'USD',
+            '978': 'EUR'
+        }.get(currency, currency)
+
+        # Проверка подписи
         hash_string = f"{notification_type}&{operation_id}&{amount}&{currency}&{datetime_}&{sender}&{codepro}&{YOOMONEY_SECRET}&{label}"
         calculated_hash = hashlib.sha1(hash_string.encode("utf-8")).hexdigest()
 
@@ -50,16 +64,38 @@ def yoomoney_webhook():
             logging.warning("[Webhook] ❌ Hash mismatch — возможно фальшивка!")
             return "UNAUTHORIZED", 403
 
-        # Если есть tg_user_id (label), пробуем обновить баланс
-        if label and amount:
+        # Обработка пополнения
+        if label and withdraw_amount:
             db = mysql.connector.connect(**db_config)
             cursor = db.cursor()
 
+            # Обновляем баланс по фактически отправленной пользователем сумме (без вычета комиссии)
             sql = "UPDATE users SET balance = balance + %s WHERE tg_user_id = %s"
-            val = (int(float(amount)), label)
+            val = (int(float(withdraw_amount)), label)
             cursor.execute(sql, val)
             db.commit()
 
+            # 👇 Добавляем запись в таблицу payments
+            try:
+                datetime_obj = datetime.strptime(datetime_, '%Y-%m-%dT%H:%M:%SZ')
+                datetime_obj = utc_time.replace(tzinfo=pytz.utc).astimezone(LOCAL_TZ)
+            except ValueError:
+                datetime_obj = datetime.now(LOCAL_TZ)  # fallback если формат неверный
+
+            sql = """
+                INSERT INTO payments (
+                    tg_user_id, amount, withdraw_amount, currency, datetime,
+                    operation_id, label, comment, type
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 'replenish')
+            """
+            val = (
+                int(label), float(amount), float(withdraw_amount), currency,
+                datetime_obj, operation_id, label, sender
+            )
+            cursor.execute(sql, val)
+            db.commit()
+
+            # Получаем chat_id пользователя
             cursor.execute("SELECT chat_id FROM users WHERE tg_user_id = %s", (label,))
             row = cursor.fetchone()
             cursor.close()
@@ -67,9 +103,10 @@ def yoomoney_webhook():
 
             if row:
                 chat_id = row[0]
-                bot.send_message(chat_id, f"🎉 Ваш баланс пополнен на {amount} RUB!")
+                bot.send_message(chat_id, f"🎉 Ваш баланс пополнен на {withdraw_amount} RUB!")
 
-            logging.info(f"[Webhook] ✅ Пополнение для tg_user_id={label} на {amount} RUB")
+            # В лог — amount (что дошло до продавца), но текстово показываем обе суммы
+            logging.info(f"[Webhook] ✅ Пополнение для tg_user_id={label} на {withdraw_amount} RUB (на счёт поступило {amount} RUB)")
 
         return "OK"
 

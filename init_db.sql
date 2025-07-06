@@ -43,3 +43,31 @@ CREATE TABLE `users` (
   UNIQUE KEY `chat_id` (`chat_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+DROP TABLE IF EXISTS `payments`;
+CREATE TABLE `payments` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tg_user_id BIGINT NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    withdraw_amount DECIMAL(10, 2) NOT NULL,
+    currency VARCHAR(10),
+    datetime DATETIME,
+    operation_id VARCHAR(100),
+    label VARCHAR(100),
+    comment TEXT,
+    type ENUM('replenish', 'subscription') DEFAULT 'replenish',
+    details TEXT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS `subscription_payments`;
+CREATE TABLE `subscription_payments` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tg_user_id BIGINT NOT NULL,
+    user_id INT NOT NULL,
+    tariff_id INT NOT NULL,
+    token_id INT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    currency VARCHAR(10) DEFAULT 'RUB',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    details TEXT
+);
