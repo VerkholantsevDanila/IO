@@ -1,3 +1,4 @@
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTphY1ZPV240bk5XY1BFY1RkVGlQdzYw@serv2.verkholantsev.com:50051/?outline=1
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.158.171.110:8080#%F0%9F%94%A5Join%2BTelegram%3A%40Farah_VPN%F0%9F%9F%A3
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjdklJODVUclc2bjBPR3lmcEhWUzF1@45.158.171.146:8080#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.132:8080#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands
@@ -20,7 +21,6 @@ ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp1UVM1bnRWcUMwMHNTS2tlTnpVaUQz@89.23.103.125:
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@188.164.248.29:8880?encryption=none&security=none&sni=hk.laoyoutiao.link&type=ws&host=hk.laoyoutiao.link&path=%2F#89@t.me/freekesha21
 vless://53fa8faf-ba4b-4322-9c69-a3e5b1555049@188.42.89.20:8880?encryption=none&security=none&sni=reedfree8mahsang2.redorg.ir&type=ws&host=reedfree8mahsang2.redorg.ir&path=%2F#140@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@185.176.24.29:8880?encryption=none&security=none&sni=hk.laoyoutiao.link&type=ws&host=hk.laoyoutiao.link&path=%2F#211@t.me/freekesha21
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTphY1ZPV240bk5XY1BFY1RkVGlQdzYw@serv2.verkholantsev.com:50051/?outline=1
 vless://4088e698-69fd-4d15-98bc-f1fe4c071642@45.131.5.224:80?type=ws&host=digitalscientificresearchgroup.ir&path=%2FTelegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#774@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@45.131.211.213:8880?encryption=none&security=none&sni=jp.laoyoutiao.link&type=ws&host=jp.laoyoutiao.link&path=%2F#157@t.me/freekesha21
 vless://f6bd2c47-99da-4bca-bf70-7186aa9e7e06@185.170.166.242:8880?security=none&type=ws&host=photographipictureai.ir#718@t.me/freekesha21
