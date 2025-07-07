@@ -66,7 +66,6 @@ vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@193.9.49.213:8880?encryption=none&s
 vless://34c01e61-f4f3-4afb-a83b-406caf8caa33@181.214.1.254:8880?encryption=none&security=none&sni=Telegram-channel-WangCai2&type=ws&host=yg.bantony199.top&path=%2F#142@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@181.214.1.63:8880?encryption=none&security=none&sni=jp.laoyoutiao.link&type=ws&host=jp.laoyoutiao.link&path=%2FTelegram%F0%9F%87%A8%F0%9F%87%B3#465@t.me/freekesha21
 vless://53fa8faf-ba4b-4322-9c69-a3e5b1555049@45.80.111.215:8880?path=%2FChannel%20id%3A%20%40ShadowProxy66%3Fed%3D2560&security=none&encryption=none&host=reedfree8mahsang2.redorg.ir&type=ws#147@t.me/freekesha21
-vless://583ceab3-4022-4553-9158-9bedc625ad4e@140.99.233.177:8880?encryption=none&security=none&sni=Telegram-channel-WangCai2&type=ws&host=ip.langmanshanxi.top&path=%2FTelegram%F0%9F%87%A8%F0%9F%87%B3#735@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@154.197.75.213:8880?encryption=none&security=none&sni=jp.laoyoutiao.link&type=ws&host=jp.laoyoutiao.link&path=%2F#229@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@156.243.246.213:8880?encryption=none&security=none&type=ws&host=jp.laoyoutiao.link&path=%2F#618@t.me/freekesha21
 vless://fab7bf9c-ddb9-4563-8a04-fb01ce6c0fbf@140.99.233.213:8880?encryption=none&security=none&sni=jp.laoyoutiao.link&type=ws&host=jp.laoyoutiao.link&path=%2F#210@t.me/freekesha21
